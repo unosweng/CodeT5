@@ -1,3 +1,23 @@
+# History
+
+conda create -n codet5 python==3.11.9
+pip install transformers==4.6.1 (failed)
+conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=11.0 -c pytorch (failed)
+
+`decided to install recent pytorch version compatible with my cuda`
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+pip install transformers[torch]
+conda install numpy pandas matplotlib
+python -m pip install scikit-learn transformers datasets sentencepiece sacremoses accelerate 
+
+### Dependency
+
+- Pytorch 1.7.1
+- tensorboard 2.4.1
+- transformers 4.6.1
+- tree-sitter 0.2.2
+
+
 # CodeT5: Identifier-aware Unified Pre-trained Encoder-Decoder Models for Code Understanding and Generation
 
 This is the official PyTorch implementation for the following EMNLP 2021 paper from Salesforce Research:
