@@ -1,14 +1,19 @@
 # History
 
+```
 conda create -n codet5 python==3.11.9
 pip install transformers==4.6.1 (failed)
 conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=11.0 -c pytorch (failed)
+```
 
-`decided to install recent pytorch version compatible with my cuda`
+`Decided to install recent pytorch version compatible with my cuda`
+
+```
 pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 pip install transformers[torch]
 conda install numpy pandas matplotlib
 python -m pip install scikit-learn transformers datasets sentencepiece sacremoses accelerate 
+```
 
 ### Dependency
 
