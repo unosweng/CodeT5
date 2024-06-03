@@ -6,9 +6,10 @@ pip install transformers==4.6.1 (failed)
 conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=11.0 -c pytorch (failed)
 ```
 
-`Decided to install recent pytorch version compatible with my cuda`
+### Decided to install the recent pytorch version compatible with the current CUDA
 
 ```
+conda create -n codet5 python==3.11.9
 pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 pip install transformers[torch]
 conda install numpy pandas matplotlib
