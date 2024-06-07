@@ -163,6 +163,30 @@ def eval_bleu_epoch(args, eval_data, eval_examples, model, tokenizer, split_tag,
 
     return result
 
+# Added to create required dirs, myoungkyu song, Jun 6 2024
+def create_directories(output_dir):
+    cache_dir = os.path.join(output_dir, 'cache_data')
+    res_dir = os.path.join(output_dir, 'prediction')
+
+    # Create directories
+    try:
+        os.makedirs(output_dir, exist_ok=True)
+        print(f"Creating OUTPUT_DIR ({output_dir}): Success")
+    except Exception as e:
+        print(f"Creating OUTPUT_DIR ({output_dir}): Failed ({e})")
+    
+    try:
+        os.makedirs(cache_dir, exist_ok=True)
+        print(f"Creating CACHE_DIR ({cache_dir}): Success")
+    except Exception as e:
+        print(f"Creating CACHE_DIR ({cache_dir}): Failed ({e})")
+    
+    try:
+        os.makedirs(res_dir, exist_ok=True)
+        print(f"Creating RES_DIR ({res_dir}): Success")
+    except Exception as e:
+        print(f"Creating RES_DIR ({res_dir}): Failed ({e})")
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -174,6 +198,10 @@ def main():
     set_seed(args)
     config, model, tokenizer = build_or_load_gen_model(args)
     model.to(args.device)
+
+    # Added to create required dirs. myoungkyu song, Jun 6 2024 
+    create_directories(args.output_dir)
+
     if args.n_gpu > 1:
         # for DataParallel
         model = torch.nn.DataParallel(model)

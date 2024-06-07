@@ -1,0 +1,8 @@
+__pycache__
+CodeT5/sh/saved_models/
+CodeT5/sh/tensorboard/
+data/
+finetuned_models/
+pretrained_models/
+saved_models/
+tensorboard/

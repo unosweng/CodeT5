@@ -14,6 +14,7 @@ pip3 install torch torchvision torchaudio --index-url https://download.pytorch.o
 pip install transformers[torch]
 conda install numpy pandas matplotlib
 python -m pip install scikit-learn transformers datasets sentencepiece sacremoses accelerate 
+pip install tensorboard
 ```
 
 ### Dependency
