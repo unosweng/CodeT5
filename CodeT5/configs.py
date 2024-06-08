@@ -8,6 +8,9 @@ logger = logging.getLogger(__name__)
 
 
 def add_args(parser):
+    # default arguments to run the first program.
+    # python run_exp.py --model_tag codet5_base --task summarize --sub_task python
+    
     parser.add_argument("--task", type=str, required=True,
                         choices=['summarize', 'concode', 'translate', 'refine', 'defect', 'clone', 'multi_task'])
     parser.add_argument("--sub_task", type=str, default='')
