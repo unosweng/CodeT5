@@ -17,12 +17,14 @@ python -m pip install scikit-learn transformers datasets sentencepiece sacremose
 pip install tensorboard
 ```
 
-### Dependency
+### Updated the starting point to run the program
 
-- Pytorch 1.7.1
-- tensorboard 2.4.1
-- transformers 4.6.1
-- tree-sitter 0.2.2
+The following information is used to run the program `run_gen.py` directly.
+
+```
+python run_exp.py --model_tag codet5_base --task summarize --sub_task python
+```
+
 
 
 # CodeT5: Identifier-aware Unified Pre-trained Encoder-Decoder Models for Code Understanding and Generation

@@ -190,6 +190,77 @@ def create_directories(output_dir):
 
 def main():
     parser = argparse.ArgumentParser()
+    # ========================================================================================
+    # BEGIN
+    # ========================================================================================
+    WORKDIR = "/home/myoungkyu@unomaha.edu/Documents/0-research-codet5/CodeT5"
+
+    parser.add_argument('--do_train', action='store_true', default=True, help="Flag to indicate training")
+    parser.add_argument('--do_eval', action='store_true', default=True, help="Flag to indicate evaluation")
+    parser.add_argument('--do_eval_bleu', action='store_true', default=True, help="Flag to indicate BLEU evaluation")
+    parser.add_argument('--do_test', action='store_true', default=True, help="Flag to indicate testing")
+    parser.add_argument('--task', type=str, default="summarize", help="Task name")
+
+    parser.add_argument('--sub_task', type=str, default="python", help="Sub task name")
+    #########################################
+    # model_tag is codet5_base.
+    parser.add_argument('--model_type', type=str, default="codet5", help="Model type")
+    parser.add_argument('--data_num', type=int, default=-1, help="Data number")
+    parser.add_argument('--num_train_epochs', type=int, default=15, help="Number of training epochs")
+    parser.add_argument('--warmup_steps', type=int, default=1000, help="Number of warmup steps")
+
+    parser.add_argument('--learning_rate', type=float, default=5e-5, help="Learning rate")
+    parser.add_argument('--patience', type=int, default=2, help="Patience for early stopping")
+    #########################################
+    # model_tag == codet5_base.
+    parser.add_argument('--tokenizer_name', type=str, default="Salesforce/codet5-base", help="Tokenizer name")
+    parser.add_argument('--model_name_or_path', type=str, default="Salesforce/codet5-base", help="Model name or path")
+    parser.add_argument('--data_dir', type=str, default=f"{WORKDIR}/data", help="Data directory")
+
+    #########################################
+    # should be changed for different experiments.
+    data_tag = 'all'
+    model_tag = 'codet5_base'
+    model_dir = 'saved_models'
+    task = 'summarize'
+    sub_task = 'python'
+
+    #########################################
+    lr = 5 #str(args.learning_rate)[0]
+    bs = 48 #args.train_batch_size
+    src_len = 256 #args.max_source_length
+    trg_len = 128 #args.max_target_length
+    patience = 2 #args.patience
+    epoch = 15 #args.num_train_epochs
+
+    #########################################
+    full_model_tag = f"{model_tag}_{data_tag}_lr{lr}_bs{bs}_src{src_len}_trg{trg_len}_pat{patience}_e{epoch}"
+    output_dir = os.path.join(model_dir, task, sub_task, full_model_tag)
+    cache_dir = os.path.join(output_dir, "cache_data")
+    res_dir = os.path.join(output_dir, "prediction")
+    log = os.path.join(output_dir, "train.log")
+
+    parser.add_argument('--cache_path', type=str, default=f"{cache_dir}", help="Cache directory")
+    parser.add_argument('--output_dir', type=str, default=f"{output_dir}", help="Output directory")
+    parser.add_argument('--summary_dir', type=str, default="tensorboard", help="Summary directory")
+    parser.add_argument('--save_last_checkpoints', action='store_true', default=True, help="Flag to save last checkpoints")
+    parser.add_argument('--always_save_model', action='store_true', default=True, help="Flag to always save model")
+
+    parser.add_argument('--res_dir', type=str, default=f"{res_dir}", help="Result directory")
+    res_fn='{}/{}_{}.txt'.format('results', task, model_tag)
+    parser.add_argument('--res_fn', type=str, default=f"{res_fn}", help="Result filename")
+    parser.add_argument('--train_batch_size', type=int, default=48, help="Training batch size")
+    parser.add_argument('--eval_batch_size', type=int, default=48, help="Evaluation batch size")
+    parser.add_argument('--max_source_length', type=int, default=256, help="Maximum source length")
+    parser.add_argument('--max_target_length', type=int, default=128, help="Maximum target length")
+
+    #########################################
+    os.makedirs(output_dir, exist_ok=True)
+    os.makedirs(cache_dir, exist_ok=True)
+    os.makedirs(res_dir, exist_ok=True)
+    # ========================================================================================
+    # END
+    # ========================================================================================
     args = add_args(parser)
     logger.info(args)
     t0 = time.time()
