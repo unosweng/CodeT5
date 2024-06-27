@@ -195,28 +195,6 @@ def main():
     # ========================================================================================
     WORKDIR = "/home/myoungkyu@unomaha.edu/Documents/0-research-codet5/CodeT5"
 
-    parser.add_argument('--do_train', action='store_true', default=True, help="Flag to indicate training")
-    parser.add_argument('--do_eval', action='store_true', default=True, help="Flag to indicate evaluation")
-    parser.add_argument('--do_eval_bleu', action='store_true', default=True, help="Flag to indicate BLEU evaluation")
-    parser.add_argument('--do_test', action='store_true', default=True, help="Flag to indicate testing")
-    parser.add_argument('--task', type=str, default="summarize", help="Task name")
-
-    parser.add_argument('--sub_task', type=str, default="python", help="Sub task name")
-    #########################################
-    # model_tag is codet5_base.
-    parser.add_argument('--model_type', type=str, default="codet5", help="Model type")
-    parser.add_argument('--data_num', type=int, default=-1, help="Data number")
-    parser.add_argument('--num_train_epochs', type=int, default=15, help="Number of training epochs")
-    parser.add_argument('--warmup_steps', type=int, default=1000, help="Number of warmup steps")
-
-    parser.add_argument('--learning_rate', type=float, default=5e-5, help="Learning rate")
-    parser.add_argument('--patience', type=int, default=2, help="Patience for early stopping")
-    #########################################
-    # model_tag == codet5_base.
-    parser.add_argument('--tokenizer_name', type=str, default="Salesforce/codet5-base", help="Tokenizer name")
-    parser.add_argument('--model_name_or_path', type=str, default="Salesforce/codet5-base", help="Model name or path")
-    parser.add_argument('--data_dir', type=str, default=f"{WORKDIR}/data", help="Data directory")
-
     #########################################
     # should be changed for different experiments.
     data_tag = 'all'
@@ -232,6 +210,28 @@ def main():
     trg_len = 128 #args.max_target_length
     patience = 2 #args.patience
     epoch = 1 # 15 #args.num_train_epochs
+
+    parser.add_argument('--do_train', action='store_true', default=True, help="Flag to indicate training")
+    parser.add_argument('--do_eval', action='store_true', default=True, help="Flag to indicate evaluation")
+    parser.add_argument('--do_eval_bleu', action='store_true', default=True, help="Flag to indicate BLEU evaluation")
+    parser.add_argument('--do_test', action='store_true', default=True, help="Flag to indicate testing")
+    parser.add_argument('--task', type=str, default="summarize", help="Task name")
+
+    parser.add_argument('--sub_task', type=str, default="python", help="Sub task name")
+    #########################################
+    # model_tag is codet5_base.
+    parser.add_argument('--model_type', type=str, default="codet5", help="Model type")
+    parser.add_argument('--data_num', type=int, default=-1, help="Data number")
+    parser.add_argument('--num_train_epochs', type=int, default=epoch, help="Number of training epochs")
+    parser.add_argument('--warmup_steps', type=int, default=1000, help="Number of warmup steps")
+
+    parser.add_argument('--learning_rate', type=float, default=5e-5, help="Learning rate")
+    parser.add_argument('--patience', type=int, default=2, help="Patience for early stopping")
+    #########################################
+    # model_tag == codet5_base.
+    parser.add_argument('--tokenizer_name', type=str, default="Salesforce/codet5-base", help="Tokenizer name")
+    parser.add_argument('--model_name_or_path', type=str, default="Salesforce/codet5-base", help="Model name or path")
+    parser.add_argument('--data_dir', type=str, default=f"{WORKDIR}/data", help="Data directory")
 
     #########################################
     full_model_tag = f"{model_tag}_{data_tag}_lr{lr}_bs{bs}_src{src_len}_trg{trg_len}_pat{patience}_e{epoch}"
