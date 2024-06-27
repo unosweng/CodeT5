@@ -227,11 +227,11 @@ def main():
 
     #########################################
     lr = 5 #str(args.learning_rate)[0]
-    bs = 48 #args.train_batch_size
+    bs = 24 # 48 #args.train_batch_size
     src_len = 256 #args.max_source_length
     trg_len = 128 #args.max_target_length
     patience = 2 #args.patience
-    epoch = 15 #args.num_train_epochs
+    epoch = 1 # 15 #args.num_train_epochs
 
     #########################################
     full_model_tag = f"{model_tag}_{data_tag}_lr{lr}_bs{bs}_src{src_len}_trg{trg_len}_pat{patience}_e{epoch}"
@@ -249,8 +249,8 @@ def main():
     parser.add_argument('--res_dir', type=str, default=f"{res_dir}", help="Result directory")
     res_fn='{}/{}_{}.txt'.format('results', task, model_tag)
     parser.add_argument('--res_fn', type=str, default=f"{res_fn}", help="Result filename")
-    parser.add_argument('--train_batch_size', type=int, default=48, help="Training batch size")
-    parser.add_argument('--eval_batch_size', type=int, default=48, help="Evaluation batch size")
+    parser.add_argument('--train_batch_size', type=int, default=bs, help="Training batch size")
+    parser.add_argument('--eval_batch_size', type=int, default=bs, help="Evaluation batch size")
     parser.add_argument('--max_source_length', type=int, default=256, help="Maximum source length")
     parser.add_argument('--max_target_length', type=int, default=128, help="Maximum target length")
 
@@ -271,6 +271,9 @@ def main():
     model.to(args.device)
 
     # Added to create required dirs. myoungkyu song, Jun 6 2024 
+    # OUTPUT_DIR - saved_models/summarize/python/codet5_base_all_lr5_..._e15)
+    # CACHE_DIR - saved_models/summarize/python/codet5_base_all_lr5_..._e15/cache_data
+    # RES_DIR - saved_models/summarize/python/codet5_base_all_lr5..._e15/prediction
     create_directories(args.output_dir)
 
     if args.n_gpu > 1:
@@ -278,6 +281,10 @@ def main():
         model = torch.nn.DataParallel(model)
     pool = multiprocessing.Pool(args.cpu_cont)
     args.train_filename, args.dev_filename, args.test_filename = get_filenames(args.data_dir, args.task, args.sub_task)
+    # CodeT5/data/summarize/python/train.jsonl
+    # CodeT5/data/summarize/python/valid.jsonl
+    # CodeT5/data/summarize/python/test.jsonl
+
     fa = open(os.path.join(args.output_dir, 'summary.log'), 'a+')
 
     if args.do_train:
