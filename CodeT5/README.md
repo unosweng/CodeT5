@@ -25,7 +25,7 @@ The following information is used to run the program `run_gen.py` directly.
 conda activate codet5
 export PYTHONPATH="/home/myoungkyu@unomaha.edu/Documents/0-research-codet5/"
 nohup python run_gen.py > output-codet5.log 2>&1 &
-<\pre>
+</pre>
 
 ### Test Result with 1 epoch and 24 batch
 
