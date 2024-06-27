@@ -27,7 +27,7 @@ export PYTHONPATH="/home/myoungkyu@unomaha.edu/Documents/0-research-codet5/"
 nohup python run_gen.py > output-codet5.log 2>&1 &
 </pre>
 
-### Test Result with 1 epoch and 24 batch
+### Test results with 1 epoch and 24 batch size
 
 - 52 mins with 1 GPU (RTX 4090 24GB) in selab2
 
