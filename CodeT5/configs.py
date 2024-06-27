@@ -11,32 +11,32 @@ def add_args(parser):
     # default arguments to run the first program.
     # python run_exp.py --model_tag codet5_base --task summarize --sub_task python
     
-    parser.add_argument("--task", type=str, required=True,
-                        choices=['summarize', 'concode', 'translate', 'refine', 'defect', 'clone', 'multi_task'])
-    parser.add_argument("--sub_task", type=str, default='')
+    # parser.add_argument("--task", type=str, required=True,
+    #                     choices=['summarize', 'concode', 'translate', 'refine', 'defect', 'clone', 'multi_task'])
+    # parser.add_argument("--sub_task", type=str, default='')
     parser.add_argument("--lang", type=str, default='')
     parser.add_argument("--eval_task", type=str, default='')
-    parser.add_argument("--model_type", default="codet5", type=str, choices=['roberta', 'bart', 'codet5'])
+    # parser.add_argument("--model_type", default="codet5", type=str, choices=['roberta', 'bart', 'codet5'])
     parser.add_argument("--add_lang_ids", action='store_true')
-    parser.add_argument("--data_num", default=-1, type=int)
+    # parser.add_argument("--data_num", default=-1, type=int)
     parser.add_argument("--start_epoch", default=0, type=int)
-    parser.add_argument("--num_train_epochs", default=100, type=int)
-    parser.add_argument("--patience", default=5, type=int)
-    parser.add_argument("--cache_path", type=str, required=True)
-    parser.add_argument("--summary_dir", type=str, required=True)
-    parser.add_argument("--data_dir", type=str, required=True)
-    parser.add_argument("--res_dir", type=str, required=True)
-    parser.add_argument("--res_fn", type=str, default='')
+    # parser.add_argument("--num_train_epochs", default=100, type=int)
+    # parser.add_argument("--patience", default=5, type=int)
+    # parser.add_argument("--cache_path", type=str, required=True)
+    # parser.add_argument("--summary_dir", type=str, required=True)
+    # parser.add_argument("--data_dir", type=str, required=True)
+    # parser.add_argument("--res_dir", type=str, required=True)
+    # parser.add_argument("--res_fn", type=str, default='')
     parser.add_argument("--add_task_prefix", action='store_true', help="Whether to add task prefix for t5 and codet5")
-    parser.add_argument("--save_last_checkpoints", action='store_true')
-    parser.add_argument("--always_save_model", action='store_true')
-    parser.add_argument("--do_eval_bleu", action='store_true', help="Whether to evaluate bleu on dev set.")
+    # parser.add_argument("--save_last_checkpoints", action='store_true')
+    # parser.add_argument("--always_save_model", action='store_true')
+    # parser.add_argument("--do_eval_bleu", action='store_true', help="Whether to evaluate bleu on dev set.")
 
     ## Required parameters
-    parser.add_argument("--model_name_or_path", default="roberta-base", type=str,
-                        help="Path to pre-trained model: e.g. roberta-base")
-    parser.add_argument("--output_dir", default=None, type=str, required=True,
-                        help="The output directory where the model predictions and checkpoints will be written.")
+    # parser.add_argument("--model_name_or_path", default="roberta-base", type=str,
+    #                     help="Path to pre-trained model: e.g. roberta-base")
+    # parser.add_argument("--output_dir", default=None, type=str, required=True,
+    #                     help="The output directory where the model predictions and checkpoints will be written.")
     parser.add_argument("--load_model_path", default=None, type=str,
                         help="Path to trained model: Should contain the .bin files")
     ## Other parameters
@@ -49,34 +49,34 @@ def add_args(parser):
 
     parser.add_argument("--config_name", default="", type=str,
                         help="Pretrained config name or path if not the same as model_name")
-    parser.add_argument("--tokenizer_name", default="roberta-base", type=str,
-                        help="Pretrained tokenizer name or path if not the same as model_name")
-    parser.add_argument("--max_source_length", default=64, type=int,
-                        help="The maximum total source sequence length after tokenization. Sequences longer "
-                             "than this will be truncated, sequences shorter will be padded.")
-    parser.add_argument("--max_target_length", default=32, type=int,
-                        help="The maximum total target sequence length after tokenization. Sequences longer "
-                             "than this will be truncated, sequences shorter will be padded.")
+    # parser.add_argument("--tokenizer_name", default="roberta-base", type=str,
+    #                     help="Pretrained tokenizer name or path if not the same as model_name")
+    # parser.add_argument("--max_source_length", default=64, type=int,
+    #                     help="The maximum total source sequence length after tokenization. Sequences longer "
+    #                          "than this will be truncated, sequences shorter will be padded.")
+    # parser.add_argument("--max_target_length", default=32, type=int,
+    #                     help="The maximum total target sequence length after tokenization. Sequences longer "
+    #                          "than this will be truncated, sequences shorter will be padded.")
 
-    parser.add_argument("--do_train", action='store_true',
-                        help="Whether to run eval on the train set.")
-    parser.add_argument("--do_eval", action='store_true',
-                        help="Whether to run eval on the dev set.")
-    parser.add_argument("--do_test", action='store_true',
-                        help="Whether to run eval on the dev set.")
+    # parser.add_argument("--do_train", action='store_true',
+    #                     help="Whether to run eval on the train set.")
+    # parser.add_argument("--do_eval", action='store_true',
+    #                     help="Whether to run eval on the dev set.")
+    # parser.add_argument("--do_test", action='store_true',
+    #                     help="Whether to run eval on the dev set.")
     parser.add_argument("--do_lower_case", action='store_true',
                         help="Set this flag if you are using an uncased model.")
     parser.add_argument("--no_cuda", action='store_true',
                         help="Avoid using CUDA when available")
 
-    parser.add_argument("--train_batch_size", default=8, type=int,
-                        help="Batch size per GPU/CPU for training.")
-    parser.add_argument("--eval_batch_size", default=8, type=int,
-                        help="Batch size per GPU/CPU for evaluation.")
+    # parser.add_argument("--train_batch_size", default=8, type=int,
+    #                     help="Batch size per GPU/CPU for training.")
+    # parser.add_argument("--eval_batch_size", default=8, type=int,
+    #                     help="Batch size per GPU/CPU for evaluation.")
     parser.add_argument('--gradient_accumulation_steps', type=int, default=1,
                         help="Number of updates steps to accumulate before performing a backward/update pass.")
-    parser.add_argument("--learning_rate", default=5e-5, type=float,
-                        help="The initial learning rate for Adam.")
+    # parser.add_argument("--learning_rate", default=5e-5, type=float,
+    #                     help="The initial learning rate for Adam.")
     parser.add_argument("--beam_size", default=10, type=int,
                         help="beam size for beam search")
     parser.add_argument("--weight_decay", default=0.0, type=float,
@@ -94,8 +94,8 @@ def add_args(parser):
                         help="")
     parser.add_argument("--train_steps", default=-1, type=int,
                         help="")
-    parser.add_argument("--warmup_steps", default=100, type=int,
-                        help="Linear warmup over warmup_steps.")
+    # parser.add_argument("--warmup_steps", default=100, type=int,
+    #                     help="Linear warmup over warmup_steps.")
     parser.add_argument("--local_rank", type=int, default=-1,
                         help="For distributed training: local_rank")
     parser.add_argument('--seed', type=int, default=1234,
